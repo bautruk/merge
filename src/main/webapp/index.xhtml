@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <script type="text/javascript">
+        function scrollTree() {
+//            var selectedElement = $('#itemDetailForm .ui-tree .ui-state-highlight')[0];
+//            if (selectedElement !== undefined) {
+//                var offsetTop = selectedElement.offsetTop;
+//                $('#itemDetailForm .ui-tree>.ui-tree-container').scrollTop(offsetTop - 10);
+//            }
+        }
+    </script>
+</h:head>
+<h:body>
+    <h1>Hello World PrimeFaces</h1>
+
+    <h:form id="navForm">
+        <!--<p:dialog header="BlaBlaBla">-->
+        <p:panelGrid id="updateItem">
+            <p:row>
+                <p:column><h:outputText value="Item:"/></p:column>
+                <p:column>
+                    <ui:fragment>
+                        <p:tree id="treeSingle" value="#{editor.root}" var="node"
+                                selectionMode="single"
+                                selection="#{editor.selectedNode}"
+                                style="height: 150px; display: inherit;"
+                                rendered="true">
+                            <p:ajax event="select" listener="#{editor.onSelect}" update=":navForm:saveItem"/>
+                            <p:treeNode expandedIcon="ui-icon-folder-open" collapsedIcon="ui-icon-folder-collapsed"
+                                        rendered="true">
+                                    <span style="cursor: pointer;" onclick="this.parentNode.parentNode.firstChild.click();">
+                                        <h:outputText value="#{node}"/>
+                                     </span>
+                            </p:treeNode>
+                            <p:treeNode type="directItem" icon="ui-icon-document" >
+                                    <h:outputText value="#{node}"/>
+                            </p:treeNode>
+                        </p:tree>
+                    </ui:fragment>
+                </p:column>
+            </p:row>
+            <f:facet name="footer">
+                <p:row id="footer">
+                    <p:column colspan="2">
+                        <p:commandButton id="saveItem" value="save" icon="button-accept-gray-class"
+                                         disabled="#{editor.disabled}">
+                        </p:commandButton>
+                        <p:commandButton value="cancel" icon="button-cross-gray-class">
+                        </p:commandButton>
+                    </p:column>
+                </p:row>
+            </f:facet>
+        </p:panelGrid>
+        <!--</p:dialog>-->
+    </h:form>
+
+</h:body>
+</html>
