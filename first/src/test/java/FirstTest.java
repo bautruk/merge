@@ -8,6 +8,6 @@ public class FirstTest {
 
     @Test
     public void test(){
-        Assert.assertEquals(2, First.first());
+        Assert.assertEquals(1, First.first());
     }
 }
