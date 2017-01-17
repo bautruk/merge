@@ -6,11 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="primefaces" />
+        <module name="first" />
+        <module name="second" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="first" target="1.8" />
       <module name="primefaces" target="1.8" />
+      <module name="second" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
